@@ -22,3 +22,15 @@ for dir in "$ROOT"/skills/*/; do
   ln -sfn "$HOME/council/skills/$name" "$target"
   echo "linked $name"
 done
+
+# Knowledge graph MCP server (needs uv; build the graph with: cd ~/council/kg && uv run kg build)
+if command -v claude >/dev/null 2>&1 && command -v uv >/dev/null 2>&1; then
+  if claude mcp get council-kg >/dev/null 2>&1; then
+    echo "council-kg MCP server already registered"
+  else
+    claude mcp add council-kg -s user -- uv run --project "$HOME/council/kg" python "$HOME/council/kg/mcp_server.py" \
+      && echo "registered council-kg MCP server"
+  fi
+else
+  echo "skip MCP registration: needs the claude CLI and uv" >&2
+fi

@@ -8,6 +8,6 @@ Roles:
 4. Tracking and media-buying analyst (pixel, optimization event, geo, congruence with live ads).
 
 Member output: findings table: severity | evidence | KB rule tag | fix, ranked by expected impact.
-Rubric: pages/store-audit-checklist.md coverage; evidence from live data (not assumptions); correct KB citations; impact ranking; fixes are specific and doable.
+Rubric: pages/store-audit-checklist.md coverage; evidence from live data (not assumptions); correct KB citations; impact ranking; fixes are specific and doable. Claims trace to the packet or to cited KG ids/tags; a citation that doesn't support its claim, or a superseded rule used as current, is a violation.
 Chairman format: top 5 fixes ranked (each with exact proposed change), quick wins vs tests, and what data is missing.
 Write-back: log.md audit entry; proposed edits handed to ecom-pages as explicit diffs.

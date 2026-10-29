@@ -8,6 +8,6 @@ Roles:
 4. Media buyer: angle diversity across variants, testability.
 
 Member output: 2 PT (≤125 chars) + 2 HL (≤40 chars) with psychology notes, or for native ads the 1,100-1,400-word story. Include character counts.
-Rubric: awareness match; hook strength in under 1s; specificity from facts only; avatar language; distinct angles per variant; limits respected; no AI tells (house-rules).
+Rubric: awareness match; hook strength in under 1s; specificity from facts only; avatar language; distinct angles per variant; limits respected; no AI tells (house-rules). Claims trace to the packet or to cited KG ids/tags; a citation that doesn't support its claim, or a superseded rule used as current, is a violation.
 Chairman format: final 2 PT + 2 HL (or the story), with a one-line rationale each.
 Write-back: attach the copy to the creatives.yaml row; log.md entry.

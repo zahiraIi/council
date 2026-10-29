@@ -8,6 +8,6 @@ Roles:
 4. Funnel diagnostician (is it the creative, the offer, or the page?).
 
 Member output: decision per campaign/ad set/ad with rule tags, and a next-7-days plan.
-Rubric: correct stage identified; rules cited from the latest dates (penalize "⚠ was:" rules); break-even from real economics; no cut after one bad day once profitable.
+Rubric: correct stage identified; rules cited from the latest dates (penalize "⚠ was:" rules); break-even from real economics; no cut after one bad day once profitable. Claims trace to the packet or to cited KG ids/tags; a citation that doesn't support its claim, or a superseded rule used as current, is a violation.
 Chairman format: decision table (entity | action | rule | why), budget plan, what to launch next, when to re-check.
 Write-back: creatives.yaml verdicts; log.md.

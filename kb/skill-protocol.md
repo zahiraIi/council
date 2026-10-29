@@ -9,6 +9,7 @@
    - `<chosen>` means the avatar the user picked. If there are several and none is picked, ask.
    - Don't load other KB files unless the task needs them; use the `files` catalog.
    - `references/winning-ads.yaml` is large: filter it with grep by stage or format instead of reading it whole.
+   - When the bundle doesn't cover the question, or you need the original wording behind a tag, search the knowledge graph before writing GAP: `kg_search` (MCP `council-kg`) covers every KB section plus the raw calls, docs, Notion notes and Schwartz; `kg_sources("c:10-19")` resolves a tag. Hits flagged `superseded_on` are history, not current advice.
 3. **Live data beats stale state.**
    - Own store: Shopify tools (products, variants, analytics funnel).
    - Competitor research is the OWNER'S MANUAL TASK: coach and analyze what they bring back; don't browse competitors unless they name a specific URL to look at [n:ball].

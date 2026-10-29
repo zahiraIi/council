@@ -8,6 +8,6 @@ Roles:
 4. Media buyer (testability, TAM for scale, creative potential).
 
 Member output: go / no-go / needs-data with evidence table.
-Rubric: research/*.md rules applied with tags; evidence quality; economics; stage-correct pivot thresholds.
+Rubric: research/*.md rules applied with tags; evidence quality; economics; stage-correct pivot thresholds. Claims trace to the packet or to cited KG ids/tags; a citation that doesn't support its claim, or a superseded rule used as current, is a violation.
 Chairman format: decision + confidence, evidence table, the cheapest next test to reduce uncertainty.
 Write-back: product.yaml (status, competitors); log.md.

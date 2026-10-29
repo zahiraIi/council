@@ -8,6 +8,6 @@ Roles:
 4. Skeptic (product-fit and believability).
 
 Member output: scorecard per sub-avatar with evidence, then a recommendation.
-Rubric: research/validation.md scorecard; real-quote evidence; big-swing distinctness; product fit.
+Rubric: research/validation.md scorecard; real-quote evidence; big-swing distinctness; product fit. Claims trace to the packet or to cited KG ids/tags; a citation that doesn't support its claim, or a superseded rule used as current, is a violation.
 Chairman format: ranked sub-avatars with scorecards, the 1-3 to deep-dive, and the research still needed.
 Write-back: avatar scorecards; log.md.

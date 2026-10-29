@@ -1,0 +1,25 @@
+# Product blueprint [d:product-breakdown-template] + store facts + economics.
+# Facts only: describe the physical product, not the brand. Unknown -> TODO. Never invent.
+slug: ""
+brand: ""
+niche: ""
+store: {domain: "", platform: shopify, currency: USD}
+status: research | validating | testing | scaling | paused
+what_it_is: ""          # physical product + how it is used
+how_it_works: ""
+features: []            # 1-5
+feature_benefits: []    # - {feature: "", benefits: ["", ""]}
+benefit_desires: []     # - {benefit: "", desire: "they want to ..."}
+unique_mechanisms: []   # candidates; the chosen one lives in mechanism.yaml
+prior_solutions_customers_tried: []
+proof_assets: []        # real reviews, certifications, test results (with source)
+claims_allowed: []      # claims backed by proof_assets
+claims_forbidden: []    # policy or unprovable
+economics:
+  cogs_per_unit: TODO
+  shipping_per_unit: TODO
+  fees_pct: TODO
+  aov: TODO
+  break_even_cpa: TODO  # = AOV - COGS - shipping - fees
+  break_even_roas: TODO # = AOV / break_even_cpa
+competitors: []         # - {name: "", url: "", price: "", offer: "", angles: [], mechanism: "", notes: ""}

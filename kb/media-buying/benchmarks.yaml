@@ -1,0 +1,23 @@
+# Metric benchmarks. Context-dependent: always state the stage when citing. Sources in brackets.
+# load_when: reading ad metrics, diagnosing a campaign, setting kill/scale thresholds
+updated: 2026-10-29
+hook_rate_min: "30% [c:10-19]"
+hold_rate_min: "30% [c:10-19]"
+cpc_ok: "< $5 [c:07-06]; $0.78-0.88 called healthy [c:09-24]"
+cpc_red_flag: "$7 with no sales = misalignment [c:08-10]"
+cpm: "high CPM normal in supplements and on fresh accounts [c:07-23, c:08-31, c:10-12]"
+shopify_cvr_reference: "~2% [c:10-15]"
+mature_brand_roas: "1.3-1.65, 10-15% daily variance [c:07-16]"
+volatility: "fluctuation below $500/day spend is normal [c:09-17]; stabilises above ~$2k/day [c:07-16]"
+winner_hit_rate: "12-15% of ads launched [c:08-06]"
+front_end_profit_min: "5% [c:10-05]"
+net_profit_scaling_good: "10-20% [c:08-17]"
+aov_to_cogs: "6-10x [c:06-18]"
+chargebacks_max: "1.5% [c:07-20]"
+email_popup_optin_target: "10% [n:ecom-resources]"
+subscription_churn: "30-40% early; >30% after month 1, up to 50%+ [c:06-18, c:10-08]"
+test_budget: "$75-100/day CBO for 2-3 days [c:08-10]"
+budget_per_ad_set: "$25-30 [c:10-19]"
+missing:
+  - "No explicit CPA targets in sources; derive break-even CPA = AOV - COGS - shipping - fees per product"
+  - "Oct 15 '30-50% break-even ROAS' is a garbled transcription; ignore"

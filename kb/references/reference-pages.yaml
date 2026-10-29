@@ -1,0 +1,10 @@
+# Example landing pages / advertorials by awareness level [d:landing-pages]
+# load_when: building or reviewing an advertorial/listicle; need a structural model
+updated: 2026-10-29
+pages:
+  - {stage: Unaware, type: advertorial, url: "https://resilia.shop/pages/hidden-invaders"}
+  - {stage: Problem Aware, type: advertorial, url: "https://shop.edenboost.com/pages/advertorial-new-natural-solution"}
+  - {stage: Solution Aware, type: advertorial, url: "", note: "GAP: no example in the course doc; find one in Pagedeck"}
+  - {stage: Product Aware, type: listicle (product-first), url: "https://trynomend.com/pages/lumalean-listicle-product-first", note: "owner: 'sick info listicle'. Use as the listicle structure model [n:dash]"}
+libraries:
+  - {name: Pagedeck lander library, url: "https://lps.pagedeck.com/"}

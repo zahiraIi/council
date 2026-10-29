@@ -1,0 +1,17 @@
+# Tools mentioned across the course (corrected spellings)
+# load_when: user asks which tool to use; research or production setup
+updated: 2026-10-29
+research: [Meta Ad Library, AdSpy, Kalodata, GetHookd, "SimilarWeb / Trendtracker (traffic → revenue est. = visitors x 3% x AOV)", "VOC.AI (Amazon review export: https://www.voc.ai/tools/chatgpt-for-amazon)", "videodatabase.io (IG/TikTok videos)", "Winning ads list on Canva (https://canva.link/pkxn4ne2rr16vhj)", Google Trends, Amazon best sellers, Foreplay, Atria, "Adslibrary.ai (http://adslibrary.ai)", "Pagedeck (https://lps.pagedeck.com/)"]
+ad_inspiration:
+  - {name: "Meta Ad Library sorted by total impressions (example page)", url: "https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&media_type=all&search_type=page&sort_data[mode]=total_impressions&sort_data[direction]=desc&view_all_page_id=358527744010018", src: "n:ecom-resources"}
+transcripts: ["youtube-transcript.io (https://www.youtube-transcript.io/) [n:ecom-resources]"]
+pages: [GemPages, PageFly (free = 1 page), Shopify]
+offers: [Kaching Bundles, "Intelligems (price/hero A/B)", "AfterSell by Rokt (post-purchase upsells)", "Upcart (cart: protection, upsells, shipping bar)"]
+email: [Klaviyo, Alia popups]
+payments: [Checkout Champ (multiple MIDs)]
+creative: [Insense (UGC creators), Higgsfield, Nano Banana, Poppy AI (not enough without research)]
+talent:
+  - {name: Video Editors of X community, url: "https://x.com/i/communities/1501393878657683469"}
+  - {name: Ecom Talent, url: "https://www.ecomtalent.io"}
+  - {name: 1800DTC agencies, url: "https://1800dtc.com/agencies"}
+  - {name: Nest Marketing (email agency), url: "https://nestmarketing.co"}

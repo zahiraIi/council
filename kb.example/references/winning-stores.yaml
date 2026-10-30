@@ -1,0 +1,4 @@
+# Stores worth modeling
+# load_when: modeling store design/offers
+updated: YYYY-MM-DD
+stores: []  # - {brand: "", niche: "", offer: "", url: ""}

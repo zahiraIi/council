@@ -1,0 +1,4 @@
+# Ads worth modeling. Grep by stage/format.
+# load_when: finding inspiration; picking an ad to deconstruct
+updated: YYYY-MM-DD
+ads: []  # - {brand: "", stage: "Problem Aware", format: "", url: "", note: ""}

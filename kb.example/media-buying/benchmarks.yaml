@@ -1,0 +1,7 @@
+# Metric benchmarks: "value [source]". State the spend stage when it matters.
+# load_when: reading ad metrics, kill/scale thresholds
+updated: YYYY-MM-DD
+hook_rate_min: ""
+hold_rate_min: ""
+cpc_ok: ""
+cvr_reference: ""

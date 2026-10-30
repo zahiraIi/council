@@ -2,15 +2,16 @@
 
 Conditions
   single:<model>   one model, no tools, one call
-  council          `/council dev-ml:` (4 members + 3 stages + chairman, via subagents)
+  council          `/council dev-ml:` (3 seats: positions, rebuttal + majority vote, chairman)
+  council-v1       the earlier 4-member peer-ranking council (results kept, no longer runnable)
 
 Scoring is objective: the answer's LAST "BUG LINE: <n>" must be one of the task's
 accepted lines. Cost and latency come from Claude Code's JSON output (total_cost_usd is
 the API-equivalent cost Claude Code reports; on a subscription it is usage, not a bill).
 
-  uv run --project kg python evals/council_vs_single/run.py --conditions single:opus single:sonnet
-  uv run --project kg python evals/council_vs_single/run.py --conditions council --tasks binary-search,dedupe-order
-  uv run --project kg python evals/council_vs_single/run.py --report
+  uv run --no-project --with pyyaml python evals/council_vs_single/run.py --conditions single:opus single:sonnet
+  uv run --no-project --with pyyaml python evals/council_vs_single/run.py --conditions council --tasks binary-search,dedupe-order
+  uv run --no-project --with pyyaml python evals/council_vs_single/run.py --report
 """
 import argparse, json, os, re, subprocess, sys, time
 
@@ -71,7 +72,7 @@ MIN_COUNCIL_TURNS = 5
 def is_valid(r):
     if r.get("error"):
         return False
-    return r["condition"] != "council" or (r.get("num_turns") or 0) >= MIN_COUNCIL_TURNS
+    return not r["condition"].startswith("council") or (r.get("num_turns") or 0) >= MIN_COUNCIL_TURNS
 
 
 def run(conditions, task_ids, tasks_file="tasks.yaml"):

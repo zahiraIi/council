@@ -1,0 +1,98 @@
+# KNOWLEDGE BASE routing index. Read this first; load only what the task's bundle lists.
+# Paths are relative to ~/council/kb/. Product state lives in ~/council/products/<slug>/.
+# Source tags: tag every rule with where it came from, e.g. [book:title ch3], [call:2026-01-15], [test:B4].
+# Conflict rule: the latest dated rule wins; keep superseded advice as "⚠ was:". GAP: = not in your sources, don't invent.
+updated: YYYY-MM-DD
+always: [foundations/house-rules.md]          # loaded for every task
+
+# Task bundles shared by the ecom-* skills and the council modes. kb = files, state = product files.
+bundles: shared by the ecom-* skills and council modes. kb = files, state = product files.
+bundles:
+  research:
+    kb: [research/product-research.md, research/validation.md, research/competitor-store-review.md, foundations/sophistication-desire.md]
+    state: [product.yaml, log.md]
+  validate:
+    kb: [research/validation.md, avatars/avatar-workflow.md]
+    state: [product.yaml, avatars/, creatives.yaml]
+  competitor:
+    kb: [research/competitor-store-review.md, pages/offers.md, references/winning-stores.yaml]
+    state: [product.yaml, offers.yaml]
+  avatar:
+    kb: [avatars/avatar-workflow.md, avatars/avatar-schema.yaml, research/validation.md, foundations/awareness.md]
+    state: [product.yaml, avatars/]
+  mechanism:
+    kb: [angles/mechanisms.md, foundations/sophistication-desire.md]
+    state: [product.yaml, avatars/, mechanism.yaml]
+  desires:
+    kb: [angles/desires.md, foundations/sophistication-desire.md, foundations/awareness.md]
+    state: [product.yaml, avatars/<chosen>.yaml, desires.yaml]
+  angles:
+    kb: [angles/angles.md, foundations/awareness.md, foundations/house-rules.md]
+    state: [product.yaml, avatars/<chosen>.yaml, desires.yaml, mechanism.yaml, angles.yaml, creatives.yaml]
+  deconstruct:
+    kb: [creative/ad-deconstruction.md, foundations/awareness.md, references/winning-ads.yaml]
+    state: []
+  script:
+    kb: [creative/script-build.md, creative/script-standards.md, creative/hooks.md, foundations/awareness.md, foundations/house-rules.md, angles/mechanisms.md]
+    state: [product.yaml, avatars/<chosen>.yaml, desires.yaml, mechanism.yaml, angles.yaml]
+  script-check:
+    kb: [creative/script-standards.md, foundations/awareness.md, foundations/house-rules.md]
+    state: [product.yaml, avatars/<chosen>.yaml, mechanism.yaml]
+  ad-copy:          # Meta primary text/headlines + native image long-form story
+    kb: [creative/primary-text-headlines.md, creative/hooks.md, angles/angles.md, foundations/awareness.md, foundations/house-rules.md]
+    state: [product.yaml, avatars/<chosen>.yaml, angles.yaml, offers.yaml]
+  brief:
+    kb: [creative/script-brief.md]
+    state: [creatives.yaml]
+  page:             # advertorial / listicle / PDP copy
+    kb: [pages/landing-pages.md, pages/offers.md, foundations/awareness.md, foundations/house-rules.md, creative/hooks.md, references/reference-pages.yaml]
+    state: [product.yaml, avatars/<chosen>.yaml, mechanism.yaml, angles.yaml, offers.yaml, pages.yaml]
+  offer:
+    kb: [pages/offers.md, references/winning-stores.yaml, media-buying/benchmarks.yaml]
+    state: [product.yaml, offers.yaml, creatives.yaml]
+  store-audit:
+    kb: [pages/store-audit-checklist.md, pages/landing-pages.md, pages/offers.md, foundations/awareness.md, ops/email-retention.md, media-buying/benchmarks.yaml]
+    state: [product.yaml, offers.yaml, pages.yaml, avatars/]
+  media-buying:
+    kb: [media-buying/testing.md, media-buying/scaling.md, media-buying/benchmarks.yaml, media-buying/account-ops.md, media-buying/growth-review.md]
+    state: [product.yaml, creatives.yaml, offers.yaml, log.md]
+  ops:
+    kb: [ops/operations.md, ops/email-retention.md, references/tools.yaml]
+    state: [log.md]
+
+# File catalog for anything not covered by a bundle
+files:
+  angles/angles.md: {about: "Angle creation"}
+  angles/desires.md: {about: "Desire extraction"}
+  angles/mechanisms.md: {about: "Unique mechanism"}
+  avatars/avatar-schema.yaml: {about: "avatar-schema.yaml"}
+  avatars/avatar-workflow.md: {about: "Avatar workflow"}
+  creative/ad-deconstruction.md: {about: "Deconstructing a winning ad"}
+  creative/hooks.md: {about: "Hooks"}
+  creative/primary-text-headlines.md: {about: "Meta primary text and headlines"}
+  creative/script-brief.md: {about: "Editor brief"}
+  creative/script-build.md: {about: "Building a video ad script"}
+  creative/script-standards.md: {about: "Script rubric"}
+  foundations/awareness.md: {about: "Market awareness levels"}
+  foundations/glossary.md: {about: "Glossary"}
+  foundations/house-rules.md: {about: "house-rules.md"}
+  foundations/sophistication-desire.md: {about: "Mass desire and market sophistication"}
+  media-buying/account-ops.md: {about: "Ad account operations"}
+  media-buying/benchmarks.yaml: {about: "benchmarks.yaml"}
+  media-buying/growth-review.md: {about: "Weekly growth review"}
+  media-buying/scaling.md: {about: "Scaling"}
+  media-buying/testing.md: {about: "Testing"}
+  ops/email-retention.md: {about: "Email and retention"}
+  ops/operations.md: {about: "Operations"}
+  pages/landing-pages.md: {about: "Landing pages"}
+  pages/offers.md: {about: "Offers and pricing"}
+  pages/store-audit-checklist.md: {about: "Store audit checklist"}
+  references/reference-pages.yaml: {about: "reference-pages.yaml"}
+  references/tools.yaml: {about: "tools.yaml"}
+  references/winning-ads.yaml: {about: "winning-ads.yaml"}
+  references/winning-stores.yaml: {about: "winning-stores.yaml"}
+  research/competitor-store-review.md: {about: "Competitor research checklist"}
+  research/product-research.md: {about: "Product research"}
+  research/validation.md: {about: "Validation and pivot rules"}
+
+known_gaps: []

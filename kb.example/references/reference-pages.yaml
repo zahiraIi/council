@@ -1,0 +1,4 @@
+# Example landing pages by awareness level
+# load_when: building or reviewing an advertorial/listicle
+updated: YYYY-MM-DD
+pages: []  # - {stage: "", type: advertorial|listicle|pdp, url: "", note: ""}

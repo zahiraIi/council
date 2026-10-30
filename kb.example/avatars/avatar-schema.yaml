@@ -1,0 +1,53 @@
+# Sub-avatar profile schema. Copy to products/<p>/avatars/<slug>.yaml.
+# Every quote: {text: "...", source: "url or 'reddit r/x'", context: "..."}. Unknown -> "No direct data found – manual research needed"
+# load_when: avatar research, desires, angles, scripts, pages (load the filled product copy, not this blank)
+name: ""
+summary: ""
+demographics: {age: "", gender: ""}
+scorecard: {desire_strength: LOW|MED|HIGH, competition: LOW|MED|HIGH, market_size: LOW|MED|HIGH, product_fits: YES|NO}
+pain_points:
+  primary: ""
+  daily_struggles: []
+  emotional_impact: ""
+  identity_impact: ""
+past_attempts:
+  victories: []          # what partly worked
+  failures: []           # what failed and why
+  current_situation: ""
+goals:
+  surface_goal: ""
+  deep_desires: []       # "I want to… so I can… so I can…"
+  hope_for: ""
+beliefs:
+  about_problem: ""
+  about_solutions: ""
+  about_themselves: ""
+  core_values: ""        # and how the problem conflicts with them
+awareness: []            # Unaware | Problem Aware | Solution Aware (multi allowed)
+customer_language:
+  exact_phrases: []      # from real research
+  metaphors: []
+  communication_style: ""
+objections:
+  why_not_solved: ""     # correlates with awareness stage
+  category_objections: []
+  internal_conflicts: []
+trigger_moments:
+  what_starts_search: [] # e.g. insecurity spikes at the gym / in shorts
+  timing_patterns: []    # seasons, life stages (also signal desire strength)
+existing_solutions:
+  used: []
+  experience: ""
+  likes: []
+  dislikes: []
+  horror_stories: []
+  trust_level: ""
+market_history:
+  past_attempts: []
+  why_old_failed: ""
+visual_triggers:
+  scroll_stopping_images: []   # great for native ads
+  dream_scenario: ""
+  fear_scenario: ""
+day_in_life: {before: "", after: ""}
+quotes: []

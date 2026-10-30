@@ -1,5 +1,5 @@
 #!/bin/sh
-# Symlink this repo's skills into ~/.claude/skills and make sure ~/council points at the repo.
+# Link this repo at ~/council, symlink its skills into ~/.claude/skills, and create a private kb/ from the template.
 set -e
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
@@ -9,6 +9,11 @@ if [ "$ROOT" != "$HOME/council" ]; then
     exit 1
   fi
   ln -sfn "$ROOT" "$HOME/council"
+fi
+
+if [ ! -d "$ROOT/kb" ]; then
+  cp -R "$ROOT/kb.example" "$ROOT/kb"
+  echo "created kb/ from kb.example/: fill it with your own playbook (it's git-ignored)"
 fi
 
 mkdir -p "$HOME/.claude/skills"
@@ -22,15 +27,3 @@ for dir in "$ROOT"/skills/*/; do
   ln -sfn "$HOME/council/skills/$name" "$target"
   echo "linked $name"
 done
-
-# Knowledge graph MCP server (needs uv; build the graph with: cd ~/council/kg && uv run kg build)
-if command -v claude >/dev/null 2>&1 && command -v uv >/dev/null 2>&1; then
-  if claude mcp get council-kg >/dev/null 2>&1; then
-    echo "council-kg MCP server already registered"
-  else
-    claude mcp add council-kg -s user -- uv run --project "$HOME/council/kg" python "$HOME/council/kg/mcp_server.py" \
-      && echo "registered council-kg MCP server"
-  fi
-else
-  echo "skip MCP registration: needs the claude CLI and uv" >&2
-fi

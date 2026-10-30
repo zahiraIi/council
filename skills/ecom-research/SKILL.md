@@ -1,30 +1,24 @@
 ---
 name: ecom-research
-description: Ecommerce product research, validation, competitor research, and winning-store review using the user's course knowledge base in ~/council. Use when the user wants to find or evaluate a product, check demand/TAM, decide whether to pivot a product, research or spy on competitors, estimate competitor revenue, find inspiration ads/landers, or review a winning store. For auditing the user's OWN store pages use ecom-pages (audit mode).
+description: Ecommerce product research and validation using your playbook in ~/council/kb - evaluate a product or new angle, check demand and competition from the evidence you collect (Google Trends, ad library, marketplace data), decide whether to pivot, and coach competitor research. Use when the user wants to find or evaluate a product, check demand/TAM, decide whether to pivot, or research competitors. For auditing the user's OWN store use ecom-pages (audit mode).
 ---
 
 # ecom-research
 
-Follow `~/council/kb/skill-protocol.md` (product resolution, context loading, house rules, write-back).
+Follow `~/council/skills/protocol.md`. Bundles (`~/council/kb/index.yaml`): `research`, `validate`, `competitor`.
 
-## Pick a mode → bundle (in `~/council/kb/index.yaml`)
-- **Product research** (find or evaluate a product or new angle) → `research`
-- **Validate / pivot** (TAM, demand signals, believability, "is it the ad or the product?") → `validate`
-- **Competitor / winning store** → `competitor`
+## Evidence comes from the owner
+You don't estimate demand or scout competitors yourself. Give the owner a capture checklist tailored to the product, then analyze what they bring back:
+1. Google Trends for the core terms: 12-month and 5-year screenshots.
+2. A demand proxy: marketplace best-seller ranks or review counts, search volume, recent community activity.
+3. Competition: how many advertisers or stores run this product or angle, and what they claim, price and offer (an empty table matching `product.yaml → competitors`).
+4. Economics: price, COGS, shipping, fees.
 
-## Steps
-1. **Product research:** apply the unit-economics gate and "what to look for" (`research/product-research.md`). Gather demand evidence with WebSearch/WebFetch: Amazon best sellers, Reddit/YouTube activity in the last 3–5 months, Google Trends. Spying on competitor ads and stores is the owner's manual job (step 3). Output a go / no-go / needs-data table: criterion | evidence (with link) | KB rule | verdict.
-2. **Validate:**
-   - Score each candidate sub-avatar on the 4-criterion scorecard.
-   - Check believability.
-   - For pivots, read `creatives.yaml` and apply the stage-dependent thresholds, including the ⚠ counterpoint.
-   - Say plainly whether the creative quality was good enough for the test to count.
-3. **Competitor (COACH ONLY; owner rule).** The owner does competitor research manually: "do not use AI to look for this… just guide me."
-   - Do NOT browse competitor ads or stores, or build the ad bank yourself.
-   - Instead:
-     - give a step-by-step plan from the checklist (`research/competitor-store-review.md`), tailored to the product: where to look, what to save, what to note;
-     - hand over an empty table to fill in, matching `product.yaml → competitors` (name, url, price, offer, angles, mechanism, avatar, review complaints, notes);
-     - once the owner pastes findings back, analyze them: gaps, untapped avatars, unused angles, pricing position, offer patterns.
-   - Write the findings into `product.yaml` with confirmation.
-   - Only fetch a page if the owner explicitly asks you to look at a specific URL.
-4. Close with the next step in the pipeline: research → ecom-avatar → ecom-angles → ecom-script / ecom-pages → ecom-media-buying.
+Read screenshots with the Read tool, transcribe the numbers, and keep the file paths. Fetch a competitor page only when the owner names the URL.
+
+## Modes
+- **Evaluate a product or angle** (`research`): apply the KB's product criteria and economics gate to the evidence. Output a table: criterion | evidence | KB rule | verdict, then go / no-go / NEEDS DATA.
+- **Validate or pivot** (`validate`): score candidates on the KB's validation scorecard; for pivots, read `creatives.yaml` and apply the KB's stage thresholds. Say plainly whether the creative was good enough for the test to count.
+- **Competitors** (`competitor`): coach the owner through the KB checklist, then analyze their findings for gaps, untapped sub-avatars, unused angles, pricing and offer patterns.
+
+Before betting on the result, offer `/council market:` with the evidence. Then: ecom-avatar → ecom-angles → ecom-script / ecom-pages → ecom-media-buying.

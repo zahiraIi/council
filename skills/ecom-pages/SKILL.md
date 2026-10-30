@@ -1,44 +1,33 @@
 ---
 name: ecom-pages
-description: Build and audit landing pages, advertorials, listicles, product pages (PDP), and offers for the user's Shopify stores using the course knowledge base in ~/council; can read and (with confirmation) edit the live Shopify store. Use when the user asks for an advertorial, listicle, pre-lander, landing page, PDP copy, hero image direction, headlines for a page, offer/bundle/pricing design, matching an ad to a landing page, or to audit/review their store.
+description: Build and audit landing pages, advertorials, listicles, product pages (PDP), and offers using your playbook in ~/council/kb; can read and (with confirmation) edit a live Shopify store. Use when the user asks for an advertorial, listicle, pre-lander, landing page, PDP copy, hero image direction, page headlines, offer/bundle/pricing design, matching an ad to a landing page, or to audit their store.
 ---
 
 # ecom-pages
 
-Follow `~/council/kb/skill-protocol.md`.
+Follow `~/council/skills/protocol.md`.
 
 | Mode | Bundle |
 |---|---|
-| Advertorial / listicle / pre-lander | `page` |
-| PDP copy or redesign | `page` + `offer` |
+| Advertorial / listicle / pre-lander / PDP | `page` (+ `offer` for PDP) |
 | Offer / pricing / bundles | `offer` |
 | Store audit | `store-audit` |
 
-## Page (advertorial, listicle, PDP)
-1. Get the ad it pairs with: angle (`angles.yaml`), awareness level, hook. If the user doesn't know, ask which level the ad targets.
-2. Start the page at that level and walk down the stages (`foundations/awareness.md` table).
-3. Deliver:
-   - page type and why;
-   - hero image direction (continues the ad's emotion; not a product shot);
-   - 3–5 headlines from the templates in customer language;
-   - 150–300-word lead copy (agitate → validate → hope, solution not yet revealed);
-   - CTA placement.
-   Ask whether to continue to the full page.
-4. Listicle structure is a known GAP. Say so, then model a Pagedeck example or a competitor's listicle (fetch it) rather than inventing a course rule.
-5. Write → `pages.yaml` (status `draft`).
+## Page
+1. Get the ad it pairs with: angle (`angles.yaml`), awareness level, hook. If unknown, ask.
+2. Follow `pages/landing-pages.md`: start at the ad's awareness level and continue the ad's emotion.
+3. Deliver page type and why, hero direction, headlines, lead copy and CTA plan; ask before writing the full page.
+4. Where the KB has no rule (e.g. listicle structure), say so and model a real example the user supplies or names.
+5. **Gate:** offer `/council creative:`. Write → `pages.yaml` (status `draft`).
 
 ## Offer
-- Read live variants and prices from Shopify. Design or compare offers with `pages/offers.md`: types, economics (show the break-even ROAS impact using `product.yaml → economics`; ask for COGS if it's TODO), the 2-offer testing rule.
-- Write → `offers.yaml`.
+Read live variants and prices (Shopify, if connected). Design or compare offers per `pages/offers.md`, showing the break-even impact from `product.yaml → economics` (ask for COGS if missing). Write → `offers.yaml`.
 
 ## Store audit
-- Pull live data: Shopify product and variants, plus the analytics funnel. Use these ShopifyQL queries:
+- Live data: product and variants, and the funnel. ShopifyQL:
   - `FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout, conversion_rate SINCE -30d UNTIL today`
   - `FROM sales SHOW orders, gross_sales, average_order_value GROUP BY product_title SINCE -90d UNTIL today`
-- Fetch the live PDP text.
-- Run the 11-point `pages/store-audit-checklist.md`. Each finding gets: severity | evidence | KB rule (tag) | fix. Rank by expected impact; offer first.
+- Fetch the live page text and run `pages/store-audit-checklist.md`. Each finding: severity | evidence | KB rule | fix, ranked by expected impact.
 
 ## Editing the live store
-- Show the exact before → after (title, description HTML, variant names/prices, etc.).
-- Apply it with Shopify tools only after the user says yes to that specific diff.
-- Log it to `log.md` and `pages.yaml` / `offers.yaml`.
+Show the exact before → after, apply it only after the user approves that diff, then log it to `log.md` and `pages.yaml` / `offers.yaml`.

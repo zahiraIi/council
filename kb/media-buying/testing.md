@@ -1,5 +1,5 @@
 ---
-topic: Meta testing: budgets, structure, batch cadence, kill rules
+topic: "Meta testing: budgets, structure, batch cadence, kill rules"
 load_when: planning a launch/test, structuring campaigns, deciding what to kill
 sources: [d:campaign-structure, n:ecom-resources, c:06-15, c:06-18, c:06-25, c:07-06, c:07-09, c:07-16, c:07-20, c:07-23, c:08-03, c:08-06, c:08-10, c:08-13, c:08-17, c:08-24, c:09-07, c:09-14, c:09-17, c:09-21, c:10-05, c:10-08, c:10-12, c:10-19]
 updated: 2026-10-29

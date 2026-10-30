@@ -1,0 +1,165 @@
+# Harder seeded-bug tasks: longer code, the bug depends on how parts interact or on a
+# docstring contract. Exactly ONE intended bug each; `lines` = acceptable 1-based lines.
+tasks:
+  - id: lru-put-order
+    about: "put() on an existing key updates the value but doesn't mark it recently used, so it can be evicted next"
+    lines: [16, 17, 18]
+    code: |
+      from collections import OrderedDict
+
+      class LRU:
+          """Fixed-size cache. Both get() and put() count as a use of the key."""
+          def __init__(self, capacity):
+              self.capacity = capacity
+              self.data = OrderedDict()
+
+          def get(self, key, default=None):
+              if key not in self.data:
+                  return default
+              self.data.move_to_end(key)
+              return self.data[key]
+
+          def put(self, key, value):
+              if key in self.data:
+                  self.data[key] = value
+                  return
+              self.data[key] = value
+              if len(self.data) > self.capacity:
+                  self.data.popitem(last=False)
+
+  - id: token-bucket-refill
+    about: "last is only updated when a request is allowed, so a rejected request's elapsed time is refilled again later (over-refill)"
+    lines: [12, 13, 16]
+    code: |
+      import time
+
+      class TokenBucket:
+          """Allow `rate` requests per second on average, bursts up to `capacity`."""
+          def __init__(self, rate, capacity, clock=time.monotonic):
+              self.rate, self.capacity, self.clock = rate, capacity, clock
+              self.tokens = capacity
+              self.last = clock()
+
+          def allow(self):
+              now = self.clock()
+              elapsed = now - self.last
+              self.tokens = min(self.capacity, self.tokens + elapsed * self.rate)
+              if self.tokens >= 1:
+                  self.tokens -= 1
+                  self.last = now
+                  return True
+              return False
+
+  - id: cursor-pagination-ties
+    about: "cursor filters on created_at alone; rows sharing a timestamp across a page boundary are skipped"
+    lines: [8, 9]
+    code: |
+      def page(rows, cursor=None, size=50):
+          """Return (items, next_cursor). Paging through to the end yields every row
+          exactly once. Rows are dicts with 'id' (unique) and 'created_at' (may repeat).
+          """
+          ordered = sorted(rows, key=lambda r: (r["created_at"], r["id"]))
+          if cursor is not None:
+              last_ts, last_id = cursor
+              ordered = [r for r in ordered
+                         if r["created_at"] > last_ts]
+          items = ordered[:size]
+          if len(items) < size:
+              return items, None
+          tail = items[-1]
+          return items, (tail["created_at"], tail["id"])
+
+  - id: dataset-accuracy-weighting
+    about: "averages per-batch accuracies equally; a short last batch is over-weighted, so it isn't dataset accuracy"
+    lines: [9, 10, 15, 16]   # 10 added after review: both models fixed it there with a correct diagnosis
+    code: |
+      def batch_accuracy(preds, labels):
+          return sum(p == y for p, y in zip(preds, labels)) / len(labels)
+
+      def evaluate(model, loader):
+          """Accuracy over the whole dataset (fraction of examples predicted correctly)."""
+          accs = []
+          for X, y in loader:
+              preds = model.predict(X)
+              accs.append(batch_accuracy(preds, y))
+          return summarize(accs)
+
+      def summarize(values):
+          if not values:
+              return 0.0
+          total = sum(values)
+          return total / len(values)
+
+  - id: welford-variance
+    about: "M2 update must use (x - new_mean); using the old mean twice gives the wrong variance"
+    lines: [10, 12]
+    code: |
+      class RunningStats:
+          """Streaming mean and sample variance (Welford)."""
+          def __init__(self):
+              self.n, self.mean, self.m2 = 0, 0.0, 0.0
+
+          def push(self, x):
+              self.n += 1
+              delta = x - self.mean
+              self.mean += delta / self.n
+              old_mean = self.mean - delta / self.n
+              # accumulate squared distance
+              self.m2 += delta * (x - old_mean)
+
+          def variance(self):
+              return self.m2 / (self.n - 1) if self.n > 1 else 0.0
+
+  - id: local-day-buckets
+    about: "groups by the UTC date, not the user's local date the docstring asks for"
+    lines: [11]
+    code: |
+      from collections import Counter
+      from datetime import timezone
+      from zoneinfo import ZoneInfo
+
+      def daily_counts(events, user_tz):
+          """Count events per calendar day in the USER'S local timezone.
+          events: aware datetimes in any timezone."""
+          tz = ZoneInfo(user_tz)
+          counts = Counter()
+          for ts in events:
+              day = ts.astimezone(timezone.utc).date()
+              counts[day] += 1
+          return dict(counts)
+
+      def busiest_day(events, user_tz):
+          counts = daily_counts(events, user_tz)
+          return max(counts, key=counts.get) if counts else None
+
+  - id: merge-touching-intervals
+    about: "strict < means touching intervals like (1,3),(3,5) are not merged, contrary to the docstring"
+    lines: [8]
+    code: |
+      def merge(intervals):
+          """Merge overlapping OR touching closed intervals, e.g. (1,3),(3,5) -> (1,5)."""
+          if not intervals:
+              return []
+          ordered = sorted(intervals)
+          out = [list(ordered[0])]
+          for start, end in ordered[1:]:
+              if start < out[-1][1]:
+                  out[-1][1] = max(out[-1][1], end)
+              else:
+                  out.append([start, end])
+          return [tuple(x) for x in out]
+
+  - id: per-split-label-map
+    about: "label->index map is built from each split's own labels, so a split missing a class gets shifted indices"
+    lines: [3, 9]
+    code: |
+      def encode(labels):
+          """Map string labels to integer class ids consistently across splits."""
+          classes = sorted(set(labels))
+          index = {c: i for i, c in enumerate(classes)}
+          return [index[l] for l in labels], classes
+
+      def prepare(train_labels, test_labels):
+          y_train, classes = encode(train_labels)
+          y_test, _ = encode(test_labels)
+          return y_train, y_test, classes

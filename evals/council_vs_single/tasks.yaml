@@ -1,0 +1,147 @@
+# Seeded-bug tasks for council-vs-single. Each snippet has exactly ONE intended bug.
+# `lines` = acceptable 1-based line numbers (counted in `code` as written below).
+# `about` = what the bug is (for humans; scoring is by line number only).
+tasks:
+  - id: binary-search
+    about: "hi = mid with lo <= hi never shrinks the range -> infinite loop"
+    lines: [9]
+    code: |
+      def find(xs, target):
+          """Index of target in sorted xs, or -1."""
+          lo, hi = 0, len(xs) - 1
+          while lo <= hi:
+              mid = (lo + hi) // 2
+              if xs[mid] < target:
+                  lo = mid + 1
+              elif xs[mid] > target:
+                  hi = mid
+              else:
+                  return mid
+          return -1
+
+  - id: moving-average
+    about: "divides by len(xs) instead of the window size"
+    lines: [6]
+    code: |
+      def moving_average(xs, window):
+          """Mean of each length-`window` slice of xs."""
+          out = []
+          for i in range(len(xs) - window + 1):
+              chunk = xs[i:i + window]
+              out.append(sum(chunk) / len(xs))
+          return out
+
+  - id: scaler-leakage
+    about: "scaler is fit on all rows before the split -> test statistics leak into training"
+    lines: [6]
+    code: |
+      from sklearn.model_selection import train_test_split
+      from sklearn.preprocessing import StandardScaler
+      from sklearn.linear_model import LogisticRegression
+
+      def train(X, y):
+          X = StandardScaler().fit_transform(X)
+          X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=0)
+          model = LogisticRegression().fit(X_tr, y_tr)
+          return model, model.score(X_te, y_te)
+
+  - id: mutable-default
+    about: "mutable default list is shared across calls"
+    lines: [1]
+    code: |
+      def add_tag(tag, tags=[]):
+          """Return a new list: the given tags plus `tag`."""
+          tags.append(tag)
+          return tags
+
+  - id: dict-delete-while-iterating
+    about: "deleting from a dict while iterating over it raises RuntimeError"
+    lines: [3, 4, 5]
+    code: |
+      def drop_empty(d):
+          """Remove keys whose value is empty, in place."""
+          for k in d:
+              if not d[k]:
+                  del d[k]
+          return d
+
+  - id: accuracy-on-probs
+    about: "compares probabilities to labels instead of thresholding/argmax"
+    lines: [5]
+    code: |
+      import numpy as np
+
+      def accuracy(model, X, y):
+          probs = model.predict_proba(X)[:, 1]
+          return float(np.mean(probs == y))
+
+  - id: early-stopping-reset
+    about: "patience counter is never reset when the loss improves"
+    lines: [6, 7, 8]
+    code: |
+      def train_loop(step, evaluate, max_epochs=100, patience=5):
+          best, bad = float("inf"), 0
+          for epoch in range(max_epochs):
+              step()
+              loss = evaluate()
+              if loss < best:
+                  best = loss
+              else:
+                  bad += 1
+              if bad >= patience:
+                  break
+          return best
+
+  - id: shuffle-separately
+    about: "X and y are shuffled independently, breaking row/label alignment"
+    lines: [4, 5]
+    code: |
+      import numpy as np
+
+      def shuffled(X, y, seed=0):
+          np.random.default_rng(seed).shuffle(X)
+          np.random.default_rng(seed + 1).shuffle(y)
+          return X, y
+
+  - id: dedupe-order
+    about: "set() loses the original order the docstring promises"
+    lines: [3]
+    code: |
+      def dedupe(items):
+          """Remove duplicates, keeping the first occurrence order."""
+          return list(set(items))
+
+  - id: inclusive-date-range
+    about: "range(days) omits the end date the docstring says is inclusive"
+    lines: [5, 6]
+    code: |
+      from datetime import date, timedelta
+
+      def days_between(start: date, end: date):
+          """Every date from start to end, inclusive."""
+          days = (end - start).days
+          return [start + timedelta(d) for d in range(days)]
+
+  - id: early-stop-on-test
+    about: "model selection uses the TEST set; should use a validation split"
+    lines: [7]
+    code: |
+      def select_model(candidates, X_tr, y_tr, X_val, y_val, X_te, y_te):
+          """Pick the best candidate on validation data, report its test score."""
+          best, best_score = None, -1.0
+          for make in candidates:
+              m = make()
+              m.fit(X_tr, y_tr)
+              score = m.score(X_te, y_te)
+              if score > best_score:
+                  best, best_score = m, score
+          return best, best.score(X_te, y_te)
+
+  - id: off-by-one-batches
+    about: "integer division drops the final partial batch"
+    lines: [3, 4]
+    code: |
+      def batches(xs, size):
+          """Split xs into consecutive batches of `size`; the last may be shorter."""
+          n = len(xs) // size
+          return [xs[i * size:(i + 1) * size] for i in range(n)]

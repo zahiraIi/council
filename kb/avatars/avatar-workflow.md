@@ -1,5 +1,5 @@
 ---
-topic: Avatar workflow: find sub-avatars → score → deep dive
+topic: "Avatar workflow: find sub-avatars → score → deep dive"
 load_when: building or choosing avatars/sub-avatars; any customer research
 sources: [d:avatar-research-prompt, d:avatar-build-scorecard, d:avatar-deep-dive-prompt, d:avatar-breakdown-template, c:06-18, c:06-25, c:07-06, c:08-06, c:08-24, c:08-27, c:09-17, c:10-12, c:10-15]
 updated: 2026-10-29

@@ -15,7 +15,10 @@ dependencies = [
 kg = "councilkg.cli:main"
 
 [dependency-groups]
-dev = ["pytest>=8.0"]
+dev = [
+    "pytest>=8.0",
+    "tiktoken>=0.14.0",
+]
 
 [build-system]
 requires = ["hatchling"]

@@ -167,9 +167,25 @@ def test_build_incremental(tmp_path, store):
 
 
 # ── MCP dispatch ────────────────────────────────────────────────────────────
+def test_trace_record_and_summary(tmp_path):
+    from councilkg import trace
+    p = str(tmp_path / "t.jsonl")
+    import time
+    t0 = time.perf_counter()
+    trace.record("kg_search", {"query": "x"}, result=[{"id": "a"}], started=t0, path=p)
+    trace.record("kg_search", {"query": "nothing"}, result=[], started=t0, path=p)
+    trace.record("kg_get", {"id": "a"}, error=ValueError("boom"), started=t0, path=p)
+    s = trace.summary(trace.load(p))
+    assert s["calls"] == 3
+    assert s["tools"]["kg_search"]["zero_result_rate"] == 0.5
+    assert s["tools"]["kg_get"]["errors"] == 1
+    assert s["zero_result_queries"] == ["nothing"]
+
+
 def test_mcp_roundtrip(tmp_path, monkeypatch):
     import mcp_server
-    from councilkg import api
+    from councilkg import api, trace
+    monkeypatch.setattr(trace, "TRACE_PATH", str(tmp_path / "trace.jsonl"))
     s = Store(str(tmp_path / "m.db"))
     s.replace_file("f", [node("kb:x#y", "post purchase upsell only in store currency")], [])
     monkeypatch.setattr(api, "_store", s)
@@ -186,3 +202,5 @@ def test_mcp_roundtrip(tmp_path, monkeypatch):
     assert {t["name"] for t in lines[1]["result"]["tools"]} >= {"kg_search", "kg_get", "kg_sources"}
     hits = json.loads(lines[2]["result"]["content"][0]["text"])
     assert hits[0]["id"] == "kb:x#y"
+    traced = trace.load(str(tmp_path / "trace.jsonl"))
+    assert len(traced) == 1 and traced[0]["tool"] == "kg_search" and traced[0]["n_results"] == 1

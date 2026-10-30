@@ -1,5 +1,5 @@
 ---
-topic: Building a video ad script: clone mode (Script Modelling §2) and from-scratch mode (7-part)
+topic: "Building a video ad script: clone mode (Script Modelling §2) and from-scratch mode (7-part)"
 load_when: writing a video ad script
 sources: [d:script-modelling-prompt §2, d:script-writing-guide, d:script-writing-masterclass, c:06-25, c:07-06, c:08-06, c:09-07]
 updated: 2026-10-29

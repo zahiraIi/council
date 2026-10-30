@@ -1,5 +1,5 @@
 ---
-topic: Meta ad copy: primary text + headlines for video and static ads
+topic: "Meta ad copy: primary text + headlines for video and static ads"
 load_when: writing Meta primary text / headlines; packaging an ad for launch
 sources: [d:primary-text-headline-prompt, d:campaign-structure, c:09-14, c:06-29]
 updated: 2026-10-29

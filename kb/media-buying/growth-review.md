@@ -1,5 +1,5 @@
 ---
-topic: Growth system: KPI definitions, weekly review, experiment brief, scale/hold/fix/pause, ad diagnosis rules of thumb
+topic: "Growth system: KPI definitions, weekly review, experiment brief, scale/hold/fix/pause, ad diagnosis rules of thumb"
 load_when: weekly reviews, writing a test hypothesis, deciding scale/hold/fix/pause, diagnosing engagement vs conversion
 sources: [n:dash Growth & Analytics, n:ball "Reviewing Ads Once Launched"]
 updated: 2026-10-29

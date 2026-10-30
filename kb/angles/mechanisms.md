@@ -1,5 +1,5 @@
 ---
-topic: Mechanisms: theory, quality checklist, and the course Mechanism Prompt workflow
+topic: "Mechanisms: theory, quality checklist, and the course Mechanism Prompt workflow"
 load_when: creating or judging a product's mechanism; scripts' root-cause/mechanism sections; sophisticated markets
 sources: [d:what-are-mechanisms, d:mechanism-prompt, c:05-14, c:06-25, c:08-24, c:09-14, c:09-24, c:10-08]
 updated: 2026-10-29

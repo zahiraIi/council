@@ -21,7 +21,16 @@ def main(argv=None):
     t = sub.add_parser("sources")
     t.add_argument("tag")
     sub.add_parser("stat")
+    tr = sub.add_parser("trace", help="summarize MCP tool-call traces (latency, zero-result rate)")
+    tr.add_argument("--hours", type=float, help="only the last N hours")
     a = p.parse_args(argv)
+
+    if a.cmd == "trace":
+        import time
+        from . import trace
+        rows = trace.load(since=time.time() - a.hours * 3600 if a.hours else None)
+        print(json.dumps(trace.summary(rows), indent=1))
+        return
 
     if a.cmd == "build":
         os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)

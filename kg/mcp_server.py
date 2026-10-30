@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Stdio JSON-RPC 2.0 MCP server for the council knowledge graph.
 Ported from ATLAS mcp_server.py: initialize, tools/list, tools/call; stdlib + councilkg."""
-import json, os, sys, traceback
+import json, os, sys, time, traceback
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from councilkg import api  # noqa: E402
+from councilkg import api, trace  # noqa: E402
 
 TOOLS = [
     {
@@ -92,11 +92,15 @@ def dispatch(msg, out=sys.stdout):
         if fn is None:
             respond(rid, error={"code": -32601, "message": f"Unknown tool: {params.get('name')}"}, out=out)
             return
+        args = params.get("arguments") or {}
+        started = time.perf_counter()
         try:
-            result = fn(params.get("arguments") or {})
+            result = fn(args)
+            trace.record(params["name"], args, result=result, started=started)
             respond(rid, {"content": [{"type": "text", "text": json.dumps(result, default=str, ensure_ascii=False)}],
                           "isError": False}, out=out)
         except Exception as e:
+            trace.record(params["name"], args, error=e, started=started)
             respond(rid, {"content": [{"type": "text", "text": f"Error: {e}\n{traceback.format_exc()}"}],
                           "isError": True}, out=out)
     elif rid is not None:

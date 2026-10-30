@@ -109,6 +109,6 @@ Propose the state updates the mode file lists (e.g. a chosen angle into `angles.
 
 ## Notes
 - Knowledge graph: `~/council/kg` (rebuild with `cd ~/council/kg && uv run kg build` after editing kb/ or adding _sources; needs Ollama running for semantic search, otherwise keyword-only).
-- Cost is about 9 subagent calls plus a large packet ×9, plus members' kg tool calls. For trivial questions, say the council is overkill and answer directly, or suggest the matching ecom-* skill.
+- Cost is about 9 subagent calls plus a large packet ×9, plus members' kg tool calls. For trivial questions, say the council is overkill and answer directly, or suggest the matching ecom-* skill, unless the input contains `[full council]`, in which case always run every stage (used by evals).
 - The council is for judgment calls and quality passes (choose, compare, critique, decide). Step-by-step production belongs to the ecom-* skills; the council can review their output.
 - Claude-only council: reviewers may recognize their own style, so anonymization reduces self-preference but doesn't remove it.

@@ -90,6 +90,16 @@ def index_yaml(rel, text):
               "meta": {"path": f"kb/{rel}", "tags": tags_in(head)}}]
     edges = [(fid, tag_to_id(t), "cites", {"tag": t}) for t in tags_in(head) if tag_to_id(t)]
     for key, items in data.items():
+        if key == "updated":
+            continue
+        if isinstance(items, (str, int, float)):          # scalar facts, e.g. benchmarks.yaml
+            nid = f"{fid}#{slug(key)}"
+            body = f"{key.replace('_', ' ')}: {items}"
+            nodes.append({"id": nid, "kind": "kb-entry", "name": f"{rel}: {key.replace('_', ' ')}",
+                          "text": body, "meta": {"path": f"kb/{rel}", "tags": tags_in(str(items))}})
+            edges.append((nid, fid, "part_of", None))
+            edges += _source_edges(nid, str(items))
+            continue
         if not isinstance(items, list):
             continue
         for i, it in enumerate(items, start=1):

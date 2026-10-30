@@ -10,7 +10,7 @@ from .index_sources import index_source, walk
 from .store import Store
 
 EMBED_BATCH = 32
-INDEX_VERSION = "2"     # bump when indexing logic changes so every file is rebuilt
+INDEX_VERSION = "3"     # bump when indexing logic changes so every file is rebuilt
 
 
 def _sha(*paths):

@@ -1,5 +1,5 @@
 ---
-topic: Landing pages: advertorials, listicles, PDPs, matched to the ad
+topic: "Landing pages: advertorials, listicles, PDPs, matched to the ad"
 load_when: building/reviewing an advertorial, listicle, pre-lander, or PDP; ad↔page congruence
 sources: [d:landing-pages, c:06-15, c:06-29, c:07-09, c:08-06, c:08-24, c:08-27, c:08-31, c:09-14, c:10-05, c:10-08, c:10-19]
 updated: 2026-10-29
